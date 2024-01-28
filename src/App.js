@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
+import styled from "styled-components"
+import Toolbar from "./components/Toolbar";
+import Modal from "./components/Modal";
 
-function App() {
+const App = () => {
+
+  const [modalData, setModalData] = useState(null)
+
+  const states = {
+    ADDING_COURSE: "ADDING_COURSE"
+  }
+
+  const leftButtons = [
+    {text: "New", state: states.ADDING_COURSE }
+  ]
+
+  const newCourseData = {
+    text: "Creating a course",
+    controls: [
+      {
+        type: 'SELECT',
+        options: [
+          {
+            key: "Create a CAPS Course",
+            value: "CAPS_COURSE"
+          },
+          {
+            key: "Create a Cambridge Course",
+            value: "CAMBRIDGE_COURSE"
+          }
+        ]
+      }
+    ]
+  }
+  
+  
+
+
+  const setState = (state) => {
+    console.log("State", state)
+    switch(state){
+      case states.ADDING_COURSE:
+        setModalData(newCourseData)
+
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      {
+        modalData?
+        <Modal data={modalData}/>
+        :null
+      }
+      
+      <Toolbar leftButtons={leftButtons} setState={setState}/>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: pink;
+`
 
 export default App;
