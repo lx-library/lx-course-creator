@@ -16,7 +16,7 @@ const ControlSelector = ({controls}) => {
                     switch(type){
                         case 'SELECT':
                             return(
-                                <div>dzve</div>
+                                <div>select</div>
                             )
                         default:
                             return null

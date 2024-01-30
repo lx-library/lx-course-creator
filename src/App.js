@@ -85,7 +85,12 @@ const App = () => {
       
       <Toolbar leftButtons={leftButtons} setState={setState}/>
 
-      <PdfToText/>
+      {
+        content?
+        <PdfToText/>
+        :null
+      }
+     
     </Container>
   );
 }
