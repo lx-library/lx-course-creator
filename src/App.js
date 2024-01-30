@@ -30,6 +30,19 @@ const App = () => {
             value: "CAMBRIDGE_COURSE"
           }
         ]
+      },
+      {
+        type: 'LIST_BUILDER',
+        options: [
+          {
+            id: "Create a CAPS Course",
+            value: "CAPS_COURSE"
+          },
+          {
+            id: "Create a Cambridge Course",
+            value: "CAMBRIDGE_COURSE"
+          }
+        ]
       }
     ]
   }
