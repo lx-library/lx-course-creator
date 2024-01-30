@@ -2,17 +2,28 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import Toolbar from "./components/Toolbar";
 import Modal from "./components/Modal";
+import PdfToText from "./pages/PdfToText";
 
 const App = () => {
 
   const [modalData, setModalData] = useState(null)
 
+  const [content, setContent] = useState(null)
+
+
+  const pageContent = {
+    filePath: 'path_toFile.js',
+  }
+
   const states = {
-    ADDING_COURSE: "ADDING_COURSE"
+    ADDING_COURSE: "ADDING_COURSE",
+    TEXT_FROM_PDF: "TEXT_FROM_PDF",
   }
 
   const leftButtons = [
-    {text: "New", state: states.ADDING_COURSE }
+    {text: "New", state: states.ADDING_COURSE },
+    {text: "PDF", state: states.TEXT_FROM_PDF }
+
   ]
 
   const newCourseData = {
@@ -42,6 +53,12 @@ const App = () => {
     switch(state){
       case states.ADDING_COURSE:
         setModalData(newCourseData)
+      case states.TEXT_FROM_PDF:
+        setContent(pageContent)
+        debugger
+
+      default:
+        return null
 
     }
   }
@@ -54,6 +71,8 @@ const App = () => {
       }
       
       <Toolbar leftButtons={leftButtons} setState={setState}/>
+
+      <PdfToText/>
     </Container>
   );
 }
