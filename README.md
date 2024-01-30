@@ -1,71 +1,61 @@
-# Getting Started with Create React App
+# Git Workflow Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+This document provides a quick guide on using Git for version control, focusing on common commands used in daily development tasks. It covers pulling from the main branch, changing branches, adding files, committing changes, and pushing to a branch.
 
-In the project directory, you can run:
+### Git Basics
 
-### `npm start`
+Git is a distributed version control system that allows multiple developers to collaborate on a project. It tracks changes to the codebase and helps manage different versions of the project.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Git Commands
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Pulling from the Main Branch
 
-### `npm test`
+Before starting new work, it's essential to have the latest changes from the main branch. To pull changes:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git pull origin main
+```
 
-### `npm run build`
+### 2. Changing Branches
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To switch to an existing branch:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git switch <branch_name>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you forgot to switch branches before starting new work and want to create a new branch and switch to it simultaneously:
 
-### `npm run eject`
+```bash
+git switch -c <new_branch_name>
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Adding Files
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Add all modified and untracked files to the staging area:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git add .
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. Committing Changes
 
-## Learn More
+Commit the staged changes with a descriptive message:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+git commit -m "Your descriptive commit message here"
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 5. Pushing to a Branch
 
-### Code Splitting
+Push the committed changes to the current branch:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+git push origin <branch_name>
+```
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For more advanced Git features and detailed documentation, refer to the official [Git documentation](https://git-scm.com/doc).
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# lx-course-creator
