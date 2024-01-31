@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { pdfjs } from 'react-pdf';
 
-// Initialize PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const PdfToText = () => {
+const TextPageParameterFilter = () => {
   const [text, setText] = useState('');
 
   const onFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
-    const extractedText = await extractTextFromPdf(selectedFile);
+    const extractedText = await extractTextFromPdf(selectedFile, 150, 156); // Change page range as needed
     setText(extractedText);
   };
 
-  const extractTextFromPdf = async (selectedFile) => {
+  const extractTextFromPdf = async (selectedFile, startPage, endPage) => {
     const reader = new FileReader();
     reader.readAsArrayBuffer(selectedFile);
     return new Promise((resolve, reject) => {
@@ -24,7 +23,7 @@ const PdfToText = () => {
           const pdf = await pdfjs.getDocument({ data: pdfData }).promise;
           const numPages = pdf.numPages;
           let fullText = '';
-          for (let pageNumber = 1; pageNumber <= numPages; pageNumber++) {
+          for (let pageNumber = startPage; pageNumber <= endPage && pageNumber <= numPages; pageNumber++) {
             const page = await pdf.getPage(pageNumber);
             const pageText = await page.getTextContent();
             const pageTextArray = pageText.items.map(item => item.str);
@@ -51,4 +50,4 @@ const PdfToText = () => {
   );
 };
 
-export default PdfToText;
+export default TextPageParameterFilter;
