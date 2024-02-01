@@ -27,17 +27,19 @@ const ContentPage = () => {
           const numPages = pdf.numPages;
           let fullText = '';
           let foundPages = [];
-          const desiredKeywords = ['Foreword', 'Chapter titles', 'Page number where each section begins', 'Index', 'Epilogue', 'Bibliography', 'contents', 'content overview']; // Add more keywords here
+          const desiredKeywords = ['Foreword', 'Chapter titles', 'Page number where each section begins', 'Index', 'Epilogue', 'Bibliography', 'contents', 'content overview', 'table of contents']; // Add more keywords here
           const lowerCaseKeywords = desiredKeywords.map(keyword => keyword.toLowerCase());
           let consecutiveKeywordCount = 0; // Counter to track consecutive keyword occurrences
+          let chapterCount = 0; // Counter to track occurrences of the word "chapter"
           for (let pageNumber = startPage; pageNumber <= endPage && pageNumber <= numPages; pageNumber++) {
             const page = await pdf.getPage(pageNumber);
             const pageText = await page.getTextContent();
             const pageTextArray = pageText.items.map(item => item.str);
-            const found = lowerCaseKeywords.some(keyword =>
+            const foundKeyword = lowerCaseKeywords.some(keyword =>
               pageTextArray.some(word => word.toLowerCase().includes(keyword))
             );
-            if (found) {
+            const chapterOccurrences = pageTextArray.filter(word => word.toLowerCase().includes('chapter')).length;
+            if (foundKeyword || chapterOccurrences >= 5) {
               foundPages.push(pageNumber);
               fullText += pageTextArray.join(' ') + '\n';
               consecutiveKeywordCount++; // Increment the counter for consecutive keyword occurrences
@@ -45,6 +47,12 @@ const ContentPage = () => {
               consecutiveKeywordCount = 0; // Reset the counter if keywords are not found on the current page
             }
             if (consecutiveKeywordCount >= 3) break; // Stop extracting after finding 3 consecutive pages with keywords
+            if (chapterOccurrences >= 5) {
+              chapterCount++;
+              if (chapterCount >= 3) break; // Stop extracting after finding 3 consecutive pages with 5 or more occurrences of "chapter"
+            } else {
+              chapterCount = 0; // Reset the counter if fewer than 5 "chapter" occurrences are found on the current page
+            }
           }
           resolve({ fullText, foundPages });
         } catch (error) {

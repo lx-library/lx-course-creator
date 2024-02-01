@@ -7,6 +7,7 @@ import ContentPage from "./pages/ContentPage";
 import TextPageParameterFilter from "./pages/TextPageParameterFilter";
 import TextbookLearningObjectives from "./pages/TextbookLearningObjectives";
 import PdfPageFinder from "./pages/PdfPageFinder"; // Import the PdfPageFinder component
+import { Document, Page } from '@react-pdf/renderer';
 
 const App = () => {
   const [modalData, setModalData] = useState(null);
@@ -95,6 +96,14 @@ const App = () => {
   };
 
   return (
+    // <Document
+    //     file="path/to/your/pdf/document.pdf"
+    //     onLoadSuccess={onDocumentLoadSuccess}
+    //   >
+    //     {Array.from(new Array(numPages), (el, index) => (
+    //       <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+    //     ))}
+    //   </Document>
     <Container>
       {modalData ? <Modal data={modalData} /> : null}
 
@@ -116,3 +125,29 @@ const Container = styled.div`
 `;
 
 export default App;
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { Document, Page } from '@react-pdf/renderer';
+
+// const PDFViewer = () => {
+//   const [numPages, setNumPages] = useState(null);
+
+//   const onDocumentLoadSuccess = ({ numPages }) => {
+//     setNumPages(numPages);
+//   };
+
+//   return (
+//     <div>
+//       <h1>PDF Viewer</h1>
+      
+//       <p>Total Pages: {numPages}</p>
+//     </div>
+//   );
+// };
+
+// export default PDFViewer;
+

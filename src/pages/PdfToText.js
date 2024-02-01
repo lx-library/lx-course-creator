@@ -4,11 +4,12 @@ import { pdfjs } from 'react-pdf';
 // Initialize PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const PdfToText = () => {
+const PdfToText = (setSelectedfFile) => {
   const [text, setText] = useState('');
 
   const onFileChange = async (e) => {
     const selectedFile = e.target.files[0];
+    setSelectedfFile(selectedFile)
     if (!selectedFile) return;
     const extractedText = await extractTextFromPdf(selectedFile);
     setText(extractedText);
