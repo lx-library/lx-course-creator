@@ -98,7 +98,8 @@ const App = () => {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: pink;
+  background-color: white;
+  padding-top: 50px;
 `
 
 export default App;

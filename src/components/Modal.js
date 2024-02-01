@@ -2,6 +2,8 @@ import React from "react"
 import styled from "styled-components"
 import Button from "./Button"
 
+import OpenAI from "../processes/OpenAi/AiAPI"
+
 
 const ControlSelector = ({controls}) => {
    
@@ -23,6 +25,7 @@ const ControlSelector = ({controls}) => {
                     }
                 })
             }
+            <OpenAI></OpenAI>
         </Padding>
     )
 

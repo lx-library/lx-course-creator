@@ -22,7 +22,9 @@ const Toolbar = ({leftButtons, setState}) => {
 
 const Container = styled.div`
     width: 100%;
-    background-color: green;
+    background-color: rgba(0,0,0, 0.4);
     padding: 10px;
+    position: fixed;
+    top: 0;
 `
 export default Toolbar
