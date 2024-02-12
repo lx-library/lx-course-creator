@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Toolbar from "./components/Toolbar";
 import Modal from "./components/Modal";
@@ -7,15 +7,17 @@ import ContentPage from "./pages/ContentPage";
 import TextPageParameterFilter from "./pages/TextPageParameterFilter";
 import TextbookLearningObjectives from "./pages/TextbookLearningObjectives";
 import PdfPageFinder from "./pages/PdfPageFinder"; // Import the PdfPageFinder component
-import { Document, Page } from '@react-pdf/renderer';
+
+
 
 const App = () => {
   const [modalData, setModalData] = useState(null);
   const [activeState, setActiveState] = useState(null);
 
-  const pageContent = {
-    filePath: "path_toFile.js",
-  };
+  useEffect(() => {
+    console.log("running")
+    //Extract()
+  }, [])
 
   const states = {
     ADDING_COURSE: "ADDING_COURSE",
@@ -28,7 +30,7 @@ const App = () => {
 
   const leftButtons = [
     { text: "New", state: states.ADDING_COURSE },
-    { text: "PDF", state: states.TEXT_FROM_PDF },
+    { text: "PDF to Text", state: states.TEXT_FROM_PDF },
     { text: "Get Content Page", state: states.CONTENT_PAGE },
     { text: "Page Parameters", state: states.PAGE_PARAMETERS },
     { text: "Textbook Learning Objectives", state: states.TEXTBOOK_LEARNING_OBJECTIVES },
@@ -96,14 +98,6 @@ const App = () => {
   };
 
   return (
-    // <Document
-    //     file="path/to/your/pdf/document.pdf"
-    //     onLoadSuccess={onDocumentLoadSuccess}
-    //   >
-    //     {Array.from(new Array(numPages), (el, index) => (
-    //       <Page key={`page_${index + 1}`} pageNumber={index + 1} />
-    //     ))}
-    //   </Document>
     <Container>
       {modalData ? <Modal data={modalData} /> : null}
 
@@ -113,7 +107,7 @@ const App = () => {
       {activeState === states.CONTENT_PAGE ? <ContentPage /> : null}
       {activeState === states.PAGE_PARAMETERS ? <TextPageParameterFilter /> : null}
       {activeState === states.TEXTBOOK_LEARNING_OBJECTIVES ? <TextbookLearningObjectives /> : null}
-      {activeState === states.PDF_PAGE_FINDER ? <PdfPageFinder /> : null} {/* Render the PdfPageFinder component */}
+      {activeState === states.PDF_PAGE_FINDER ? <PdfPageFinder /> : null} Render the PdfPageFinder component
     </Container>
   );
 };
@@ -121,33 +115,8 @@ const App = () => {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: pink;
-`;
+  background-color: white;
+  padding-top: 50px;
+`
 
 export default App;
-
-
-
-
-
-// import React, { useState } from 'react';
-// import { Document, Page } from '@react-pdf/renderer';
-
-// const PDFViewer = () => {
-//   const [numPages, setNumPages] = useState(null);
-
-//   const onDocumentLoadSuccess = ({ numPages }) => {
-//     setNumPages(numPages);
-//   };
-
-//   return (
-//     <div>
-//       <h1>PDF Viewer</h1>
-      
-//       <p>Total Pages: {numPages}</p>
-//     </div>
-//   );
-// };
-
-// export default PDFViewer;
-

@@ -4,12 +4,15 @@ import { pdfjs } from 'react-pdf';
 // Initialize PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const PdfToText = (setSelectedfFile) => {
+
+
+const PdfToText = () => {
   const [text, setText] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
 
   const onFileChange = async (e) => {
     const selectedFile = e.target.files[0];
-    setSelectedfFile(selectedFile)
+    setSelectedFile(selectedFile)
     if (!selectedFile) return;
     const extractedText = await extractTextFromPdf(selectedFile);
     setText(extractedText);
@@ -22,6 +25,7 @@ const PdfToText = (setSelectedfFile) => {
       reader.onload = async () => {
         const pdfData = new Uint8Array(reader.result);
         try {
+  
           const pdf = await pdfjs.getDocument({ data: pdfData }).promise;
           const numPages = pdf.numPages;
           let fullText = '';
@@ -45,7 +49,8 @@ const PdfToText = (setSelectedfFile) => {
       {text && (
         <div>
           <h3>Extracted Text:</h3>
-          <pre style={{ overflowWrap: 'break-word' }}>{text}</pre>
+          {/* <pre style={{ overflowWrap: 'break-word' }}>{text}</pre> */}
+          <div>{text}</div>
         </div>
       )}
     </div>
