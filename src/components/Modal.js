@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Button from "./Button"
 
-import OpenAI from "../processes/OpenAi/AiAPI"
+// import OpenAI from "../pro``cesses/OpenAi/AiAPI"
 
 
 const ControlSelector = ({controls}) => {
@@ -25,11 +25,11 @@ const ControlSelector = ({controls}) => {
                     }
                 })
             }
-            <OpenAI></OpenAI>
+            {/* <OpenAI></OpenAI> */}
         </Padding>
     )
 
-
+``
 }
 
 const Modal = ({data}) => {
