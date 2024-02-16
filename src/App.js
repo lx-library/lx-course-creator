@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Toolbar from "./components/Toolbar";
-import Modal from "./components/Modal";
-import PdfToText from "./pages/PdfToText";
-import ContentPage from "./pages/ContentPage";
-import TextPageParameterFilter from "./pages/TextPageParameterFilter";
-import TextbookLearningObjectives from "./pages/TextbookLearningObjectives";
-import PdfPageFinder from "./pages/PdfPageFinder"; // Import the PdfPageFinder component
+import Toolbar from "./components/Toolbar.js";
+import Modal from "./components/Modal.js";
+import PdfToText from "./pages/PdfToText.js";
+import ContentPage from "./pages/ContentPage.js";
+import TextPageParameterFilter from "./pages/TextPageParameterFilter.js";
+import TextbookLearningObjectives from "./pages/TextbookLearningObjectives.js";
+import PdfPageFinder from "./pages/PdfPageFinder.js"; // Import the PdfPageFinder component
 
 
 

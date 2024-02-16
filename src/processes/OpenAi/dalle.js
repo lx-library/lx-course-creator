@@ -1,15 +1,16 @@
 import OpenAI from 'openai';
+import dotenv from "dotenv";
 
-
+// Load environment variables from .env file
+dotenv.config();
 
 async function generateImages(prompt) {
   const openai = new OpenAI({
-    apiKey: "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"
+    apiKey: process.env.OPENAI_API_KEY
   });
 
-
-  if(!prompt){
-    prompt = "a cute border colly"
+  if (!prompt) {
+    prompt = "a cute border colly";
   }
   const numberOfImages = 1;
   const imageSize = "256x256";
@@ -21,8 +22,8 @@ async function generateImages(prompt) {
       size: imageSize
     });
 
-    console.log(imageGeneration)
-    return imageGeneration
+    console.log(imageGeneration);
+    return imageGeneration;
   } catch (error) {
     console.error('Error generating images:', error);
   }
